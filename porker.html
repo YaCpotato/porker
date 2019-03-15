@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ポーカー</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf8">
+        <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
+<!-- UIkit CSS 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.25/css/uikit.min.css" />
+
+<-- jQuery is required 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<-- UIkit JS 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.25/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.25/js/uikit-icons.min.js"></script>
+-->
+</head>
+<body>
+<div id="deck">
+    <div v-if="isActive">
+    <button v-on:click="createMyDeck">手札を作る</button>
+    </div>
+    <div v-else>
+        <input type="checkbox" v-model="isChange[0]">
+        <label for="checkbox">{{ myDeck[0]%13+1 }}</label>
+        <input type="checkbox" v-model="isChange[1]">
+        <label for="checkbox">{{ myDeck[1]%13+1 }}</label>
+        <input type="checkbox" v-model="isChange[2]">
+        <label for="checkbox">{{ myDeck[2]%13+1 }}</label>
+        <input type="checkbox" v-model="isChange[3]">
+        <label for="checkbox">{{ myDeck[3]%13+1 }}</label>
+        <input type="checkbox" v-model="isChange[4]">
+        <label for="checkbox">{{ myDeck[4]%13+1 }}</label>
+
+        <button v-on:click="deckChange">手札を変える</button>
+    </div>
+
+</div>
+    <div id="role">
+        <button v-on:click="AllRoleJudge">判定</button>
+    </div>
+    <h1>Hello</h1>>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="porker_deck.js"></script>
+<script src="role.js"></script>
+
+</body>
+</html>
