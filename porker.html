@@ -22,19 +22,18 @@
     </div>
     <div v-else>
         <input type="checkbox" v-model="isChange[0]">
-        <label for="checkbox">{{ myDeck[0]%13+1 }}</label>
+        <label for="checkbox" id="0">{{ myDeck[0]%13+1 }}{{ mySuit[0] }}</label>
         <input type="checkbox" v-model="isChange[1]">
-        <label for="checkbox">{{ myDeck[1]%13+1 }}</label>
+        <label for="checkbox" id="1">{{ myDeck[1]%13+1 }}{{ mySuit[1] }}</label>
         <input type="checkbox" v-model="isChange[2]">
-        <label for="checkbox">{{ myDeck[2]%13+1 }}</label>
+        <label for="checkbox" id="2">{{ myDeck[2]%13+1 }}{{ mySuit[2] }}</label>
         <input type="checkbox" v-model="isChange[3]">
-        <label for="checkbox">{{ myDeck[3]%13+1 }}</label>
+        <label for="checkbox" id="3">{{ myDeck[3]%13+1 }}{{ mySuit[3] }}</label>
         <input type="checkbox" v-model="isChange[4]">
-        <label for="checkbox">{{ myDeck[4]%13+1 }}</label>
+        <label for="checkbox" id="4">{{ myDeck[4]%13+1 }}{{ mySuit[4] }}</label>
 
         <button v-on:click="deckChange">手札を変える</button>
     </div>
-
 </div>
     <div id="role">
         <button v-on:click="AllRoleJudge">判定</button>
