@@ -1,7 +1,20 @@
 # porker
-The porker program used Vue.js
-
+## The porker program used Vue.js
 This program used web and activated by button.
+
+## porkerdeck.js-function
+### createDeck
+### deckChange
+### desideSuit
+
+## role.js-function
+### Flash
+### Straight
+### FourCard
+### ThreeCard
+### FullHouse
+### Pair
+### AllRoleJudge
 
 //Japanese
 webページのボタンで自分の手札を作り、変えるものはチェックボックスで選択します。
