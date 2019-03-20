@@ -29,49 +29,26 @@ var role=new Vue({
         Straight:function(){
             console.log('Straight(),isActive.')
             var i=0
-            var surplus1=[]
+            var surplus=[]
             for(var i=0;i<5;i++){
-                surplus1.push(this.role_deck[i]%13)
+                surplus.push(this.role_deck[i]%13)
             }
 //ソートする
-            surplus1.sort(
+            surplus.sort(
                 //これがないと、数字ではなく、文字列としてソートしてしまう/*
                 function(a,b){
                     return a-b;
             }
             )
             for(var i=0;i<5;i++){
-                console.log(surplus1[i])
+                console.log(surplus[i])
             }
 
-            /*var suit=[0,0,0,0,0,0,0,0,0,0,0,0,0]
-
-            for(var i=0;i<5;i++){
-                suit[surplus1[i]]=suit[surplus1[i]]+1
-            }
-            console.log('suit= '+suit)
-var i=0;
-            while(i<5){
-                if(suit[i]==1){
-                    var k=suit[i]
-                    for(var j=k;j<k+5;j++){
-                        if(suit[j]!=suit[j+1]){
-                            console.log('Straight count='+i)
-                            return 0;
-                        }
-                        i=i+1
-                    }
-                    this.Straight_judge=true
-                    return 0;
-                }
-            }*/
 
             for(var i=4;i>=1;i--){
                 console.log('i='+i)
-                if(surplus1[i]!=surplus1[i-1]+1){
+                if(surplus[i]!=surplus[i-1]+1){
                     console.log(i+'連番判定×')
-                    console.log(surplus1[i])
-                    console.log(surplus1[i-1]+1)
                     return 0;
                 }
                 if(i==1){
@@ -79,14 +56,14 @@ var i=0;
                 }
             }
             
-            if(surplus1[4]!=12 || surplus1[0]!=0){
+            if(surplus[4]!=12 || surplus[0]!=0){
                 console.log('RS判定×')
                 return 0;
-            }else if(surplus1[4]==12 || surplus1[0]==0){
+            }else if(surplus[4]==12 || surplus[0]==0){
                 this.Straight_judge=false
                 this.RoyalStraight_judge=true
             }
-            if(surplus1[4]-surplus1[0]!=4){
+            if(surplus[4]-surplus[0]!=4){
                 //RoyalStraight時にはでる
                 console.log('前後判定×')
                 this.RoyalStraight_judge=false
@@ -96,47 +73,57 @@ var i=0;
 
         FourCard:function(){//４カード・・・剰余が等しいカードが4枚
             console.log('FourCard(),isActive.')
-            var surplus2=[]
+            var surplus=[]
             for(var i=0;i<5;i++){
-                surplus2.push(this.role_deck[i]%13)
-                console.log('surplus2[i]='+surplus2[i])
+                surplus.push(this.role_deck[i]%13)
+                console.log('surplus[i]='+surplus[i])
             }
-            surplus2.sort(
+            surplus.sort(
                 //これがないと、数字ではなく、文字列としてソートしてしまう/*
                 function(a,b){
                     return a-b;
             }
             )
-            for(var i=0;i<4;i++){
-                if(surplus2[i]!=surplus2[i+1])
-                return 0;
+            var suit=[0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+            for(var i=0;i<5;i++){
+                suit[surplus[i]]=suit[surplus[i]]+1
             }
-            this.FourCard_judge=true
+            console.log('suit= '+suit)
+
+            for(var j=0;j<13;j++){
+                console.log('number check detected')
+                console.log(suit[j])
+                if(suit[j]==4){
+                    console.log('FourCard judge')
+                    this.FourCard_judge=true
+                }
+            }
         },
 
         FullHouse:function(){
             console.log('FullHouse(),isActive.')
-            var surplus3=[]
+            var surplus=[]
             for(var i=0;i<5;i++){
-                surplus3.push(this.role_deck[i]%13)
-                console.log('surplus3[i]='+surplus3[i])
+                surplus.push(this.role_deck[i]%13)
+                console.log('surplus[i]='+surplus[i])
             }
-            surplus3.sort(
+            surplus.sort(
                 //これがないと、数字ではなく、文字列としてソートしてしまう/*
                 function(a,b){
                     return a-b;
             }
             )
             for(var i=0;i<4;i++){
-                if(surplus3[i]!=surplus3[i+1]){//1枚目、2枚目が等しかったら
+                if(surplus[i]!=surplus[i+1]){//1枚目、2枚目が等しかったら
                     return 0;//等しくなければ終わり
                 }else if(i==0){
-                    if(surplus3[i+1]==surplus3[i+2]){//2枚目、3枚目をみる
-                            if(surplus3[i+3]!=surplus3[i+4]){//3枚目と4枚目,4枚目と5枚目を確認する
+                    if(surplus[i+1]==surplus[i+2]){//2枚目、3枚目をみる
+                            if(surplus[i+3]!=surplus[i+4]){//3枚目と4枚目,4枚目と5枚目を確認する
                                 return 0;//等しくなければ終わり
                             }
                         this.FullHouse_judge=true//等しかったら、昇順に並べたときに、3枚、2枚となるフルハウス
-                    }else if(surplus3[i+1]!=surplus3[i+2]){
+                    }else if(surplus[i+1]!=surplus[i+2]){
                         console.log('Not a 3-2 FullHouse,then...')
                         i=2
                     }
@@ -146,12 +133,12 @@ var i=0;
         },
         ThreeCard:function(){
             console.log('ThreeCard(),isActive.')
-            var surplus4=[]
+            var surplus=[]
             for(var i=0;i<5;i++){
-                surplus4.push(this.role_deck[i]%13)
-                console.log('surplus4[i]='+surplus4[i])
+                surplus.push(this.role_deck[i]%13)
+                console.log('surplus[i]='+surplus[i])
             }
-            surplus4.sort(
+            surplus.sort(
                 //これがないと、数字ではなく、文字列としてソートしてしまう/*
                 function(a,b){
                     return a-b;
@@ -160,7 +147,7 @@ var i=0;
             var suit=[0,0,0,0,0,0,0,0,0,0,0,0,0]
 
             for(var i=0;i<5;i++){
-                suit[surplus4[i]]=suit[surplus4[i]]+1
+                suit[surplus[i]]=suit[surplus[i]]+1
             }
             console.log('suit= '+suit)
 
@@ -176,12 +163,12 @@ var i=0;
         },
         Pair:function(){
             console.log('Pair(),isActive.')
-            var surplus5=[]
+            var surplus=[]
             for(var i=0;i<5;i++){
-                surplus5.push(this.role_deck[i]%13)
-                console.log('surplus5[i]='+surplus5[i])
+                surplus.push(this.role_deck[i]%13)
+                console.log('surplus[i]='+surplus[i])
             }
-            surplus5.sort(
+            surplus.sort(
                 //これがないと、数字ではなく、文字列としてソートしてしまう/*
                 function(a,b){
                     return a-b;
@@ -190,7 +177,7 @@ var i=0;
             var suit=[0,0,0,0,0,0,0,0,0,0,0,0,0]
 
             for(var i=0;i<5;i++){
-                suit[surplus5[i]]=suit[surplus5[i]]+1
+                suit[surplus[i]]=suit[surplus[i]]+1
             }
             console.log('suit= '+suit)
 
