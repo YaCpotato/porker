@@ -38,7 +38,14 @@
     <div id="role">
         <button v-on:click="AllRoleJudge">判定</button>
     </div>
-    <h1>Hello</h1>>
+    <h1 v-if="Flash_judge">フラッシュ！</h1>
+    <h1 v-else-if="Straight_judge">ストレート！</h1>
+    <h1 v-else-if="RoyalStraight_judge">ロイヤルストレート！</h1>
+    <h1 v-else-if="FourCard_judge">フォーカード！</h1>
+    <h1 v-else-if="FullHouse_judge">フルハウス！</h1>
+    <h1 v-else-if="ThreeCard_judge">スリーカード！</h1>
+    <h1 v-else-if="TwoPair_judge">ツーペア！</h1>
+    <h1 v-else-if="OnePair_judge">ワンペア！</h1>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="porker_deck.js"></script>
 <script src="role.js"></script>
